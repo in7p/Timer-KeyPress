@@ -435,10 +435,12 @@
             // 
             this.txtPRGTime.Location = new System.Drawing.Point(178, 167);
             this.txtPRGTime.Name = "txtPRGTime";
+            this.txtPRGTime.ReadOnly = true;
             this.txtPRGTime.Size = new System.Drawing.Size(51, 21);
             this.txtPRGTime.TabIndex = 23;
-            this.txtPRGTime.Text = "6";
-            this.txtPRGTime.TextChanged += new System.EventHandler(this.txtPRGTime_TextChanged);
+            this.txtPRGTime.Text = "0";
+            this.txtPRGTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPRGTime_KeyPress);
+            this.txtPRGTime.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtPRGTime_MouseDoubleClick);
             // 
             // timPRG
             // 

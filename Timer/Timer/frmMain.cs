@@ -136,7 +136,7 @@ namespace Timer
         private Point offset;
         Thread tcount,tPRG;
         Thread tkp1, tkp2, tkp3, tkp4;
-        static int iPRGTime=6;
+        static int iPRGTime=0;
         static Boolean bShowBtn=true;
         static int kpt1=100,kpt2=100,kpt3=100,kpt4=100;
         static int kp1 = 49, kp2 = 50, kp3 = 51, kp4 = 52;
@@ -158,16 +158,12 @@ namespace Timer
             System.Windows.Forms.Keys key = (System.Windows.Forms.Keys)Enum.Parse(typeof(System.Windows.Forms.Keys), txtHotKey.Text);
             fhotkeyChange();
             tPRG = new Thread(tPRGsub);
-            tPRG.Start();
             PRGcalcTime();
         }
 
         private void tPRGsub()
         {
-            PRGcalcTime();
-            int iadd=1;
-
-            while (1 == 1)
+            //while (1==1)
             {
                 if (prgCount.InvokeRequired)
                 {
@@ -176,21 +172,18 @@ namespace Timer
                 }
                 else
                 {
-                    for (int i = 0; i < 101; i=i+iadd)
+                    while (txtPRGTime.ReadOnly==true)
                     {
-                        prgCount.Value = i;
                         Application.DoEvents();
-                        if (i==99)
+                        if (prgCount.Value < 99)
                         {
-                            iadd = -1;
-                            prgCount.ForeColor = Color.Red;
+                            prgCount.Value = prgCount.Value +1;
+                            Thread.Sleep(iPRGTime);
                         }
-                        if (i==0)
+                        else
                         {
-                            iadd = 1;
-                            prgCount.ForeColor = Color.Blue;
+                            prgCount.Value = 0;
                         }
-                        Thread.Sleep(iPRGTime);
                     }
                 }
             }
@@ -199,11 +192,16 @@ namespace Timer
 
         private void PRGcalcTime()
         {
-            iPRGTime = Convert.ToInt16(txtPRGTime.Text) * 10;
-            if (iPRGTime>10000)
+            try
             {
-                iPRGTime = 10;
+                iPRGTime = Convert.ToInt16(txtPRGTime.Text) * 10;
             }
+            catch
+            {
+                txtPRGTime.Text = "0";
+                iPRGTime = 0;
+            }
+
         }
 
         private void valueRefresh()
@@ -355,6 +353,7 @@ namespace Timer
             isecond = 0; imsecond = 0; iminute = 0; ihour = 0;
             System.GC.Collect();
             flabTimeChange(0);
+            prgCount.Value = 0;
             if (timRefresh.Enabled == true)
             {
                 fSaveNowTime("Start ");
@@ -837,6 +836,28 @@ namespace Timer
                 this.labKP3.Text = text;
             }
         }
+
+        private void txtPRGTime_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            tPRG.Abort();
+            txtPRGTime.ReadOnly = false;
+            prgCount.Value = 0;
+        }
+
+        private void txtPRGTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            { 
+                PRGcalcTime();
+                if (iPRGTime != 0)
+                {
+                    tPRG = new Thread(tPRGsub);
+                    tPRG.Start();
+                }
+                txtPRGTime.ReadOnly = true;
+            }
+        }
+
         private void SetlabT4(string text)
         {
             if (this.labKP4.InvokeRequired)
@@ -1028,12 +1049,5 @@ namespace Timer
             }
             prgCount.PerformStep();
         }
-
-        private void txtPRGTime_TextChanged(object sender, EventArgs e)
-        {
-            PRGcalcTime();
-        }
-
-
     }
 }
