@@ -42,4 +42,3 @@ C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer for D3.ex
 C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer for D3.application
 C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer for D3.exe
 C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer for D3.pdb
-C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer.csprojResolveAssemblyReference.cache
