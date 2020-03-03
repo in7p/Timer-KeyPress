@@ -19,8 +19,6 @@ namespace Timer
     {
         public class HotKeys
         {
-            
-            
             Dictionary<int, HotKeyCallBackHanlder> keymap = new Dictionary<int, HotKeyCallBackHanlder>();
             public delegate void HotKeyCallBackHanlder();
             public enum HotkeyModifiers
@@ -30,25 +28,6 @@ namespace Timer
                 Shift = 4,
                 Win = 8
             }
-
-
-            //public void Regist(IntPtr hWnd, int modifiers, Keys vk, HotKeyCallBackHanlder callBack)
-            //{
-            //    int id = keyid;
-            //    if (!RegisterHotKey(hWnd, id, modifiers, vk))
-            //        throw new Exception("注册失败！");
-            //    keymap[id] = callBack;
-            //}
-
-            //public void UnRegist(IntPtr hWnd, HotKeyCallBackHanlder callBack)
-            //{
-            //    //foreach (KeyValuePair<int, HotKeyCallBackHanlder> var in keymap)
-            //    //{
-            //    //    if (var.Value == callBack)
-            //    //        UnregisterHotKey(hWnd, var.Key);
-            //    //}
-            //    UnregisterHotKey(hWnd, keyid);
-            //}
 
             public void ProcessHotKey(Message m)
             {
@@ -132,91 +111,63 @@ namespace Timer
         delegate void SetTextCallback(string text);
 
         IntPtr hwndkp;
-        static int isecond = 0, imsecond = 0, iminute = 0, ihour = 0;
         private Point offset;
-        Thread tcount,tPRG;
-        Thread tkp1, tkp2, tkp3, tkp4;
-        static int iPRGTime=0;
+        Thread tNowTime;
+        Thread tKeyPress1, tKeyPress2, tKeyPress3, tKeyPress4;
         static Boolean bShowBtn=true;
-        static int kpt1=100,kpt2=100,kpt3=100,kpt4=100;
-        static int kp1 = 49, kp2 = 50, kp3 = 51, kp4 = 52;
+        static int KeyPressSleep1 = 100, KeyPressSleep2 = 100, KeyPressSleep3 = 100, KeyPressSleep4 = 100;
+        public int KeyNum1 = 49, KeyNum2 = 50, KeyNum3 = 51, KeyNum4 = 52;
         IniFile finiset = new IniFile(".\\Timer.ini");
         KeyEventArgs e1, e2, e3, e4;
+        public DateTime startTime;
         static int keyid = 202;
         //变量声明
+
+        public delegate void Refreshfrm();
+        Refreshfrm RefreshfrmNowTime;
 
         public frmMain()
         {
             InitializeComponent();
+            
+        }
+        private void RefreshlabNowTime() 
+        {
+            labNowTime.Text = DateTime.Now.ToString("hh:mm:ss.f");
+            labTimer.Text= (DateTime.Now - startTime).ToString();
+            KeyNum1 = Convert.ToInt16(txtKeypress1.Text);
+            KeyNum2 = Convert.ToInt16(txtKeypress2.Text);
+            KeyNum3 = Convert.ToInt16(txtKeypress3.Text);
+            KeyNum4 = Convert.ToInt16(txtKeypress4.Text);
+            KeyPressSleep1 = Convert.ToInt16(txtKPTime1.Text);
+            KeyPressSleep2 = Convert.ToInt16(txtKPTime2.Text);
+            KeyPressSleep3 = Convert.ToInt16(txtKPTime3.Text);
+            KeyPressSleep4 = Convert.ToInt16(txtKPTime4.Text);
+        }
+        public void RefreshNowTime()
+        {
+            while (1 == 1)
+            {
+                this.Invoke(RefreshfrmNowTime);
+                Application.DoEvents();
+                Thread.Sleep(100);
+            }
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             iniread();
-            timeToolStripMenuItem.Text = DateTime.Now.ToString();  //程序开启时间
-            labUserInput.Text = "";
             System.Windows.Forms.Keys key = (System.Windows.Forms.Keys)Enum.Parse(typeof(System.Windows.Forms.Keys), txtHotKey.Text);
+            fSaveNowTime();
+            RefreshfrmNowTime = new Refreshfrm(RefreshlabNowTime);
+            tNowTime = new Thread(RefreshNowTime);
+            tNowTime.Start();
             fhotkeyChange();
-            tPRG = new Thread(tPRGsub);
-            PRGcalcTime();
+            tKeyPress1 = new Thread(skp1);
+            tKeyPress2 = new Thread(skp2);
+            tKeyPress3 = new Thread(skp3);
+            tKeyPress4 = new Thread(skp4);
         }
-
-        private void tPRGsub()
-        {
-            //while (1==1)
-            {
-                if (prgCount.InvokeRequired)
-                {
-                    DoDataDelegate d = tPRGsub;
-                    prgCount.Invoke(d);
-                }
-                else
-                {
-                    while (txtPRGTime.ReadOnly==true)
-                    {
-                        Application.DoEvents();
-                        if (prgCount.Value < 99)
-                        {
-                            prgCount.Value = prgCount.Value +1;
-                            Thread.Sleep(iPRGTime);
-                        }
-                        else
-                        {
-                            prgCount.Value = 0;
-                        }
-                    }
-                }
-            }
-        }
-        private delegate void DoDataDelegate();
-
-        private void PRGcalcTime()
-        {
-            try
-            {
-                iPRGTime = Convert.ToInt16(txtPRGTime.Text) * 10;
-            }
-            catch
-            {
-                txtPRGTime.Text = "0";
-                iPRGTime = 0;
-            }
-
-        }
-
-        private void valueRefresh()
-        {
-            kp1 = Convert.ToInt16(txtKeypress1.Text);
-            kp2 = Convert.ToInt16(txtKeypress2.Text);
-            kp3 = Convert.ToInt16(txtKeypress3.Text);
-            kp4 = Convert.ToInt16(txtKeypress4.Text);
-            kpt1 = Convert.ToInt16(txtKPTime1.Text);
-            kpt2 = Convert.ToInt16(txtKPTime2.Text);
-            kpt3 = Convert.ToInt16(txtKPTime3.Text);
-            kpt4 = Convert.ToInt16(txtKPTime4.Text);
-            label1.Text = ((Keys)kp1).ToString() + "\r\n" + ((Keys)kp2).ToString() + "\r\n" + ((Keys)kp3).ToString() + "\r\n" + ((Keys)kp4).ToString();
-        }
-        //刷新自动按键各变量
 
         private void iniread()
         {
@@ -235,7 +186,6 @@ namespace Timer
                 txtKPTime4.Text = finiset.ReadString("KeyPress", "kpt4", null);
                 txtHotKey.Text = finiset.ReadString("KeyPress", "HotKey", null);
                 if (txtHotKey.Text == "") { txtHotKey.Text = "F10"; }
-                valueRefresh();
             }
             catch
             {
@@ -259,7 +209,6 @@ namespace Timer
                 finiset.WriteString("KeyPress", "kpt4", txtKPTime4.Text);
                 finiset.WriteInt("Main", "X", this.Left);
                 finiset.WriteInt("Main", "Y", this.Top);
-
             }
             catch
             {
@@ -270,8 +219,7 @@ namespace Timer
 
         public void OnHotkey()
         {
-            btnKeyPressStart_Click(null,null);
-            Setstat("Hotkey Get" + " \r\n");
+            BTNKeyPressStart_Click(null,null);
         }
         //全局快捷键触发事件
 
@@ -281,7 +229,7 @@ namespace Timer
             switch (m.Msg)
             {
                 case WM_HOTKEY:
-                    btnKeyPressStart_Click(null,null);//调用主处理程序
+                    BTNKeyPressStart_Click(null,null);//调用主处理程序
                     break;
             }
             base.WndProc(ref m);
@@ -302,94 +250,18 @@ namespace Timer
         }
         //点击任意位置移动窗体
 
-        private void ffrmmouseup(object sender, MouseEventArgs e)
-        {
 
-        }
-
-        void tTimeCount()
+        private void fSaveNowTime()
         {
-            while (1 == 1)
-            {
-                imsecond++;
-                if (imsecond >= 10) { imsecond = 0; isecond++; }
-                if (isecond >= 60) { isecond = 0; iminute++; }
-                if (iminute >= 60) { iminute = 0; ihour++; }
-                if (ihour > 99) { isecond = 0; imsecond = 0; iminute = 0; ihour = 0; }  //若超过99小时则重置
-                if (isecond == 59) { System.GC.Collect(); }
-                Thread.Sleep(100);
-            }
-        }
-        //计时用线程
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            if (timRefresh.Enabled == false) {
-                tcount = new Thread(tTimeCount); 
-                timRefresh.Enabled = true; 
-                tcount.Start();
-                btnStart.Text = "Pause";
-                fSaveNowTime("Start");
-            }
-            else { 
-                timRefresh.Enabled = false; 
-                tcount.Abort();
-                btnStart.Text = "Start";
-                System.GC.Collect();
-                fSaveNowTime("Pause");
-            }
-        }
-        //开始计时按钮
-
-        private void fSaveNowTime(string prestr)
-        {
-                timeToolStripMenuItem.Text = prestr+":" + DateTime.Now.ToLongTimeString();
-                Setstatt(prestr + " \r\n");
+            startTime = DateTime.Now;
         }
         //保存开始计时时间
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            isecond = 0; imsecond = 0; iminute = 0; ihour = 0;
-            System.GC.Collect();
-            flabTimeChange(0);
-            prgCount.Value = 0;
-            if (timRefresh.Enabled == true)
-            {
-                fSaveNowTime("Start ");
-            }
-            else { fSaveNowTime("Reset "); }
+            fSaveNowTime();
         }
         //重置按钮
-
-        private void timRefresh_Tick(object sender, EventArgs e)
-        {
-            flabTimeChange(0);
-        }
-        //计时器控件刷新时间
-
-        private void flabTimeChange(int ShowType)
-        {
-            string hh, mm, ss;
-            if (ihour < 10) { hh = "0" + Convert.ToString(ihour); } else { hh = Convert.ToString(ihour); }
-            if (iminute < 10) { mm = "0" + Convert.ToString(iminute); } else { mm = Convert.ToString(iminute); }
-            if (isecond < 10) { ss = "0" + Convert.ToString(isecond); } else { ss = Convert.ToString(isecond); }
-            //强制显示2位数字
-            switch (ShowType)
-            {
-                case 1:
-        
-                    break;
-                default:
-                    labTime.Text = hh + ":" + mm + ":" + ss + "." + imsecond;
-                    if (this.TopMost == false)
-                    {
-                        if (txtUserInput.ReadOnly == true) { this.Text = hh + ":" + mm + ":" + ss + " - " + txtUserInput.Text; }
-                        else { this.Text = hh + ":" + mm + ":" + ss + " - Timer"; }
-                    }
-                    break;
-            }
-        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -398,25 +270,8 @@ namespace Timer
         }
         //下拉菜单-Exit
 
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
-
         private void sFormClose()
         {
-            try
-            {
-                tcount.Abort();
-            }
-            catch
-            {
-
-            }
             try
             {
                 UnregisterHotKey(Handle, keyid);
@@ -427,8 +282,7 @@ namespace Timer
             }
             try
             {
-                tkp1.Abort();
-                Setlab("S", 1);
+                tKeyPress1.Abort();
             }
             catch
             {
@@ -437,8 +291,7 @@ namespace Timer
 
             try
             {
-                tkp2.Abort();
-                Setlab("S", 2);
+                tKeyPress2.Abort();
             }
             catch
             {
@@ -446,8 +299,7 @@ namespace Timer
             }
             try
             {
-                tkp3.Abort();
-                Setlab("S", 3);
+                tKeyPress3.Abort();
             }
             catch
             {
@@ -455,8 +307,7 @@ namespace Timer
             }
             try
             {
-                tkp4.Abort();
-                Setlab("S", 4);
+                tKeyPress4.Abort();
             }
             catch
             {
@@ -464,15 +315,7 @@ namespace Timer
             }
             try
             {
-                tPRG.Abort();
-            }
-            catch
-            {
-
-            }
-            try
-            {
-                tcount.Abort();
+                tNowTime.Abort();
             }
             catch
             {
@@ -488,46 +331,15 @@ namespace Timer
                 this.Opacity = 0.6;
                 transparentToolStripMenuItem.Visible = true;
                 transparentToolStripMenuItem.Checked = true;
-                Setstatt("Set Top " + " \r\n");
             }
             else { 
                 this.TopMost = false; 
                 this.Opacity = 1;
                 transparentToolStripMenuItem.Visible = false;
                 transparentToolStripMenuItem.Checked = false;
-                Setstatt("Uncheck Set Top " + " \r\n");
             }
         }
         //置顶并改变透明度
-
-        private void txtUserInput_DoubleClick(object sender, EventArgs e)
-        {
-            txtUserInput.ReadOnly = false;
-            Setstatt("Locked ");
-        }
-
-        private void txtUserInput_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13) {
-                if (txtUserInput.ReadOnly == false)
-                {
-                    txtUserInput.ReadOnly = true; 
-                    labUserInput.Text = txtUserInput.Text;
-                    this.Text =  txtUserInput.Text+" - Timer";
-                }
-                else
-                {
-                    txtUserInput.ReadOnly = false; 
-                    labUserInput.Text = "";
-                    this.Text = "Timer";
-                }
-            }
-        }
-
-        private void txtUserInput_Click(object sender, EventArgs e)
-        {
-            txtUserInput.SelectAll();
-        }
 
         private void labTime_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -550,11 +362,6 @@ namespace Timer
             else{
                 this.Opacity=1;
             }
-        }
-
-        private void txtKeypress1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
         }
 
         private void txtKeypress1_KeyDown(object sender, KeyEventArgs e)
@@ -611,29 +418,27 @@ namespace Timer
                         break;
                     }
             }
-            valueRefresh();
         }
 
-        private void txtKPTime1_TextChanged(object sender, EventArgs e)
+        private void TXTKPTime1_TextChanged(object sender, EventArgs e)
         {
             TextBox sendertxtBox = (TextBox)sender;
-            txt_TextChanged(sender, e, sendertxtBox);
-            valueRefresh();
+            TXT_TextChanged(sender, e, sendertxtBox);
         }
 
-        private void txtKPTime1_KeyPress(object sender, KeyPressEventArgs e)
+        private void TXTKPTime1_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox sendertxtBox = (TextBox)sender;
-            txtKPTime_Keypress(sender, e, sendertxtBox);
+            TXTKPTime_Keypress(sender, e, sendertxtBox);
         }
 
-        private void txtKPTime_Keypress(object sender, KeyPressEventArgs e, TextBox sendertxtBox)
+        private void TXTKPTime_Keypress(object sender, KeyPressEventArgs e, TextBox sendertxtBox)
         {
             if (((int)e.KeyChar < 48 || (int)e.KeyChar > 57) && (int)e.KeyChar != 8)
                 e.Handled = true;
         }
 
-        private void txt_TextChanged(object sender, EventArgs e, TextBox sendertxtBox)
+        private void TXT_TextChanged(object sender, EventArgs e, TextBox sendertxtBox)
         {
             try
             {
@@ -645,89 +450,44 @@ namespace Timer
                     sendertxtBox.Text = "";
                     sendertxtBox.Text = "30000";
                 }
-                valueRefresh();
             }
             catch { }
         }
 
-        private void fPlaySound(int playtype=1)     //1=开始 2=停止
-        {
-            try
-            {
-                System.Media.SoundPlayer play=new System.Media.SoundPlayer();
-                switch (playtype)
-                {
-                    case 1:
-                        {
-                            play.SoundLocation = Directory.GetCurrentDirectory() + "/start.wav";
-                            break;
-                        }
-                    case 2:
-                        {
-                            play.SoundLocation = Directory.GetCurrentDirectory() + "/stop.wav";
-                            break;
-                        }
-                    default:
-                        {
-                            play.SoundLocation = Directory.GetCurrentDirectory() + "/start.wav";
-                            break;
-                        }
-                }
-                play.Load();
-                play.Play();
-                play.Dispose();
-            }
-            catch
-            {
-
-            }
-        }
-
-        private void btnKeyPressStart_Click(object sender, EventArgs e)
+        private void BTNKeyPressStart_Click(object sender, EventArgs e)
         {
             //iniwrite();
             if (btnKeyPressStart.Text == "Start" && txtHotKey.Focused == false)
             {
                 btnKeyPressStart.Text = "Stop";
                 btnKeyPressStart.Enabled = true;
-                txtStatus.ReadOnly = true;
-                labTime.ForeColor = System.Drawing.Color.Red;
+                labTimer.ForeColor = System.Drawing.Color.Red;
                 hwndkp = WindowFromPoint(Cursor.Position.X, Cursor.Position.Y);
-                Setstat("AutoKey Press Win ID:" + hwndkp.ToString() + " \r\n");
-                fPlaySound(1);
-                if (kp1 >=32 && kp1<=225)
+                if (KeyNum1 >=32 && KeyNum1<=225)
                 {
-                    tkp1 = new Thread(skp1);
-                    tkp1.Start();
+                    tKeyPress1.Start();
                 }
-                if (kp2 > 32 && kp2 < 225)
+                if (KeyNum2 > 32 && KeyNum2 < 225)
                 {
-                    tkp2 = new Thread(skp2);
-                    tkp2.Start();
+                    tKeyPress2.Start();
                 }
-                if (kp3 > 32 && kp3 < 225)
+                if (KeyNum3 > 32 && KeyNum3 < 225)
                 {
-                    tkp3 = new Thread(skp3);
-                    tkp3.Start();
+                    tKeyPress3.Start();
                 }
-                if (kp4 > 32 && kp4 < 225)
+                if (KeyNum4 > 32 && KeyNum4 < 225)
                 {
-                    tkp4 = new Thread(skp4);
-                    tkp4.Start();
+                    tKeyPress4.Start();
                 }
             }
             else
             {
                 btnKeyPressStart.Text = "Start";
                 btnKeyPressStart.Enabled = false;
-                txtStatus.ReadOnly = false;
-                labTime.ForeColor = System.Drawing.Color.Black;
-                fPlaySound(2);
-                Setstat("- ");
+                labTimer.ForeColor = System.Drawing.Color.Black;
                 try 
                 {
-                    tkp1.Abort();
-                    Setlab("S",1);
+                    tKeyPress1.Abort();
                 }
                 catch 
                 {
@@ -736,8 +496,7 @@ namespace Timer
                 
                 try
                 {
-                    tkp2.Abort();
-                    Setlab("S",2);
+                    tKeyPress2.Abort();
                 }
                 catch
                 {
@@ -745,8 +504,7 @@ namespace Timer
                 }
                 try
                 {
-                    tkp3.Abort();
-                    Setlab("S",3);
+                    tKeyPress3.Abort();
                 }
                 catch
                 {
@@ -754,202 +512,58 @@ namespace Timer
                 }
                 try
                 {
-                    tkp4.Abort();
-                    Setlab("S",4);
+                    tKeyPress4.Abort();
                 }
                 catch
                 {
 
                 }
-            }
-        }
-        private void Setstat(string text)
-        {
-            if (timRefresh.Enabled == true)
-            {
-                string stime = "";
-                stime = labTime.Text.Substring(3,5);
-                if (this.txtStatus.InvokeRequired)
-                {
-                    SetTextCallback d = new SetTextCallback(Setstat);
-                    this.Invoke(d, new object[] { stime + " " + text });
-                }
-                else
-                {
-                    this.txtStatus.Text = stime + " " + text + this.txtStatus.Text;
-                }
-            }
-            else
-            {
-                Setstatt(text);
-            }
-        }
-        //keypress log 记录
-
-        private void Setstatt(string text)
-        {
-            if (this.txtStatus.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(Setstat);
-                this.Invoke(d, new object[] { DateTime.Now.ToLongTimeString() + " " + text });
-            }
-            else
-            {
-                this.txtStatus.Text = DateTime.Now.ToLongTimeString() + " " + text + this.txtStatus.Text;
-            }
-        }
-        //timer log 记录
-
-        private void SetlabT1(string text)
-        {
-            if (this.labKP1.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetlabT1);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                this.labKP1.Text = text;
-            }
-        }
-        private void SetlabT2(string text)
-        {
-            if (this.labKP2.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetlabT2);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                this.labKP2.Text = text;
-            }
-        }
-        private void SetlabT3(string text)
-        {
-            if (this.labKP3.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetlabT3);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                this.labKP3.Text = text;
-            }
-        }
-
-        private void txtPRGTime_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            tPRG.Abort();
-            txtPRGTime.ReadOnly = false;
-            prgCount.Value = 0;
-        }
-
-        private void txtPRGTime_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            { 
-                PRGcalcTime();
-                if (iPRGTime != 0)
-                {
-                    tPRG = new Thread(tPRGsub);
-                    tPRG.Start();
-                }
-                txtPRGTime.ReadOnly = true;
-            }
-        }
-
-        private void SetlabT4(string text)
-        {
-            if (this.labKP4.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetlabT4);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                this.labKP4.Text = text;
-            }
-        }
-        private void Setlab(string text,int labID)
-        {
-            switch (labID)
-            {
-                case 1:
-                    {
-                        SetlabT1(text);
-                        break;
-                    }
-                case 2:
-                    {
-                        SetlabT2(text);
-                        break;
-                    }
-                case 3:
-                    {
-                        SetlabT3(text);
-                        break;
-                    }
-                case 4:
-                    {
-                        SetlabT4(text);
-                        break;
-                    }
             }
         }
 
         void skp1()
         {
-            Setlab("R",1);
             while (hwndkp != IntPtr.Zero)
             {
-                //valueRefresh();
-                PostMessage(hwndkp, WM_KEYDOWN, kp1, 0);
+                PostMessage(hwndkp, WM_KEYDOWN, KeyNum1, 0);
                 Thread.Sleep(5);
-                PostMessage(hwndkp, WM_KEYUP, kp1, 0);
-                Thread.Sleep(kpt1);
+                PostMessage(hwndkp, WM_KEYUP, KeyNum1, 0);
+                Thread.Sleep(KeyPressSleep1);
             }
         }
         void skp2()
         {
-            Setlab("R",2);
             while (hwndkp != IntPtr.Zero)
             {
-                PostMessage(hwndkp, WM_KEYDOWN, kp2, 0);
+                PostMessage(hwndkp, WM_KEYDOWN, KeyNum2, 0);
                 Thread.Sleep(5);
-                PostMessage(hwndkp, WM_KEYUP, kp2, 0);
-                Thread.Sleep(kpt2);
+                PostMessage(hwndkp, WM_KEYUP, KeyNum2, 0);
+                Thread.Sleep(KeyPressSleep2);
             }
-            Thread.Sleep(kpt2);
         }
         void skp3()
         {
-            Setlab("R",3);
             while (hwndkp != IntPtr.Zero)
             {
-                PostMessage(hwndkp, WM_KEYDOWN, kp3, 0);
+                PostMessage(hwndkp, WM_KEYDOWN, KeyNum3, 0);
                 Thread.Sleep(5);
-                PostMessage(hwndkp, WM_KEYUP, kp3, 0);
-                Thread.Sleep(kpt3);
+                PostMessage(hwndkp, WM_KEYUP, KeyNum3, 0);
+                Thread.Sleep(KeyPressSleep3);
             }
-            Thread.Sleep(kpt3);
         }
         void skp4()
         {
-            Setlab("R",4);
             while (hwndkp != IntPtr.Zero)
             {
-                PostMessage(hwndkp, WM_KEYDOWN, kp4, 0);
+                PostMessage(hwndkp, WM_KEYDOWN, KeyNum4, 0);
                 Thread.Sleep(5);
-                PostMessage(hwndkp, WM_KEYUP, kp4, 0);
-                Thread.Sleep(kpt4);
+                PostMessage(hwndkp, WM_KEYUP, KeyNum4, 0);
+                Thread.Sleep(KeyPressSleep4);
             }
-            Thread.Sleep(kpt4);
         }
 
         private void txtHotKey_KeyDown(object sender, KeyEventArgs e)
         {
-            //TextBox sendertxtBox = (TextBox)sender;
-            //txtKeypress_KeyDown(sender, e, sendertxtBox);
             txtHotKey.Text = e.KeyData.ToString();
             fhotkeyChange();
         }
@@ -960,7 +574,6 @@ namespace Timer
             try
             {
                 UnregisterHotKey(Handle, keyid);
-                //Setstat("Hotkey UnRegistered");
             }
             catch
             {
@@ -973,16 +586,14 @@ namespace Timer
                     if (txtHotKey.Text != "Escape")
                     {
                         RegisterHotKey(Handle, i, 0, key);
-                        Setstat("Hotkey Registered: ("+i+") "+  txtHotKey.Text+ " \r\n");
                     }
                     else
                     {
-                        Setstat("Hotkey not set" + " \r\n");
                     }
                 }
                 catch
                 {
-                    Setstat("Hotkey Reg Error id=" +i+ " \r\n");
+
                 }
                 finally
                 {
@@ -995,59 +606,6 @@ namespace Timer
         private void btnSaveSetting_Click(object sender, EventArgs e)
         {
             iniwrite();
-        }
-
-        private void timValueRefresh_Tick(object sender, EventArgs e)
-        {
-            valueRefresh();
-        }
-
-        private void saveLogToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string swpath = ".\\" + System.DateTime.Now.ToString("yyMMdd") + "_" + System.DateTime.Now.ToString("HHmmss") + "_Timerlog.txt";
-                StreamWriter sw = new StreamWriter(swpath);
-                sw.Write(txtStatus.Text);
-                sw.Close();
-                Setstatt("Log Saved: "+swpath+"\r\n");
-            }
-            catch
-            {
-                Setstatt("Save Log Fail \r\n");
-            }
-
-        }
-
-        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            txtStatus.SelectAll();
-        }
-
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            txtStatus.Copy();
-        }
-
-        private void clearToolStripMenuItem_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                txtStatus.Text = "";
-            }
-            else
-            {
-                Setstatt("Right Click to Clear\r\n");
-            }
-        }
-
-        private void timPRG_Tick(object sender, EventArgs e)
-        {
-            if (prgCount.Value >= 100)
-            {
-                prgCount.Value = 0;
-            }
-            prgCount.PerformStep();
         }
     }
 }

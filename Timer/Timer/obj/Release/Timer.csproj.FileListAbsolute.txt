@@ -42,3 +42,11 @@ C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer for D3.ex
 C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer for D3.application
 C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer for D3.exe
 C:\Users\Inkit\Source\Repos\Timer-for-D3\Timer\Timer\obj\Release\Timer for D3.pdb
+D:\Git\Timer-for-D3\Timer\Timer\bin\Release\Timer Keypress.exe.config
+D:\Git\Timer-for-D3\Timer\Timer\bin\Release\Timer Keypress.exe
+D:\Git\Timer-for-D3\Timer\Timer\bin\Release\Timer Keypress.pdb
+D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer.frmMain.resources
+D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer.Properties.Resources.resources
+D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer.csproj.GenerateResource.cache
+D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer Keypress.exe
+D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer Keypress.pdb
