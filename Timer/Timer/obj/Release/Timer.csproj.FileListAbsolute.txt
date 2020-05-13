@@ -50,3 +50,11 @@ D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer.Properties.Resources.resources
 D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer.csproj.GenerateResource.cache
 D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer Keypress.exe
 D:\Git\Timer-for-D3\Timer\Timer\obj\Release\Timer Keypress.pdb
+D:\Git\Timer-KeyPress\Timer\Timer\bin\Release\Timer Keypress.exe.config
+D:\Git\Timer-KeyPress\Timer\Timer\bin\Release\Timer Keypress.exe
+D:\Git\Timer-KeyPress\Timer\Timer\bin\Release\Timer Keypress.pdb
+D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer.frmMain.resources
+D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer.Properties.Resources.resources
+D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer.csproj.GenerateResource.cache
+D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer Keypress.exe
+D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer Keypress.pdb

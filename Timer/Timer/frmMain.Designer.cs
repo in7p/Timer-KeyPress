@@ -59,14 +59,12 @@
             this.labTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labTimer.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTimer.ForeColor = System.Drawing.Color.Black;
-            this.labTimer.Location = new System.Drawing.Point(2, 56);
+            this.labTimer.Location = new System.Drawing.Point(9, 49);
             this.labTimer.Name = "labTimer";
             this.labTimer.Size = new System.Drawing.Size(184, 38);
             this.labTimer.TabIndex = 0;
             this.labTimer.Text = "00:00:00.0";
             this.labTimer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.labTime_MouseDoubleClick);
-            this.labTimer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ffrmmousedown);
-            this.labTimer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ffrmmousemove);
             // 
             // btnReset
             // 
@@ -74,10 +72,10 @@
             this.btnReset.FlatAppearance.BorderSize = 0;
             this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(180, 61);
+            this.btnReset.Font = new System.Drawing.Font("Arial", 6F, System.Drawing.FontStyle.Bold);
+            this.btnReset.Location = new System.Drawing.Point(152, 93);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(55, 30);
+            this.btnReset.Size = new System.Drawing.Size(40, 17);
             this.btnReset.TabIndex = 2;
             this.btnReset.TabStop = false;
             this.btnReset.Text = "Reset";
@@ -87,7 +85,7 @@
             // 
             // txtKeypress1
             // 
-            this.txtKeypress1.Location = new System.Drawing.Point(12, 106);
+            this.txtKeypress1.Location = new System.Drawing.Point(5, 102);
             this.txtKeypress1.Name = "txtKeypress1";
             this.txtKeypress1.ReadOnly = true;
             this.txtKeypress1.Size = new System.Drawing.Size(82, 21);
@@ -98,7 +96,7 @@
             // 
             // txtKeypress2
             // 
-            this.txtKeypress2.Location = new System.Drawing.Point(12, 133);
+            this.txtKeypress2.Location = new System.Drawing.Point(5, 129);
             this.txtKeypress2.Name = "txtKeypress2";
             this.txtKeypress2.ReadOnly = true;
             this.txtKeypress2.Size = new System.Drawing.Size(82, 21);
@@ -109,7 +107,7 @@
             // 
             // txtKeypress3
             // 
-            this.txtKeypress3.Location = new System.Drawing.Point(12, 160);
+            this.txtKeypress3.Location = new System.Drawing.Point(5, 156);
             this.txtKeypress3.Name = "txtKeypress3";
             this.txtKeypress3.ReadOnly = true;
             this.txtKeypress3.Size = new System.Drawing.Size(82, 21);
@@ -120,7 +118,7 @@
             // 
             // txtKeypress4
             // 
-            this.txtKeypress4.Location = new System.Drawing.Point(12, 187);
+            this.txtKeypress4.Location = new System.Drawing.Point(5, 183);
             this.txtKeypress4.Name = "txtKeypress4";
             this.txtKeypress4.ReadOnly = true;
             this.txtKeypress4.Size = new System.Drawing.Size(82, 21);
@@ -131,7 +129,7 @@
             // 
             // txtKPTime1
             // 
-            this.txtKPTime1.Location = new System.Drawing.Point(100, 106);
+            this.txtKPTime1.Location = new System.Drawing.Point(93, 102);
             this.txtKPTime1.Name = "txtKPTime1";
             this.txtKPTime1.Size = new System.Drawing.Size(51, 21);
             this.txtKPTime1.TabIndex = 8;
@@ -142,7 +140,7 @@
             // 
             // txtKPTime2
             // 
-            this.txtKPTime2.Location = new System.Drawing.Point(100, 133);
+            this.txtKPTime2.Location = new System.Drawing.Point(93, 129);
             this.txtKPTime2.Name = "txtKPTime2";
             this.txtKPTime2.Size = new System.Drawing.Size(51, 21);
             this.txtKPTime2.TabIndex = 9;
@@ -153,7 +151,7 @@
             // 
             // txtKPTime3
             // 
-            this.txtKPTime3.Location = new System.Drawing.Point(100, 160);
+            this.txtKPTime3.Location = new System.Drawing.Point(93, 156);
             this.txtKPTime3.Name = "txtKPTime3";
             this.txtKPTime3.Size = new System.Drawing.Size(51, 21);
             this.txtKPTime3.TabIndex = 10;
@@ -164,7 +162,7 @@
             // 
             // txtKPTime4
             // 
-            this.txtKPTime4.Location = new System.Drawing.Point(100, 187);
+            this.txtKPTime4.Location = new System.Drawing.Point(93, 183);
             this.txtKPTime4.Name = "txtKPTime4";
             this.txtKPTime4.Size = new System.Drawing.Size(51, 21);
             this.txtKPTime4.TabIndex = 11;
@@ -176,7 +174,7 @@
             // btnKeyPressStart
             // 
             this.btnKeyPressStart.Enabled = false;
-            this.btnKeyPressStart.Location = new System.Drawing.Point(176, 157);
+            this.btnKeyPressStart.Location = new System.Drawing.Point(150, 152);
             this.btnKeyPressStart.Name = "btnKeyPressStart";
             this.btnKeyPressStart.Size = new System.Drawing.Size(43, 35);
             this.btnKeyPressStart.TabIndex = 13;
@@ -186,7 +184,7 @@
             // 
             // txtHotKey
             // 
-            this.txtHotKey.Location = new System.Drawing.Point(180, 133);
+            this.txtHotKey.Location = new System.Drawing.Point(154, 128);
             this.txtHotKey.Name = "txtHotKey";
             this.txtHotKey.ReadOnly = true;
             this.txtHotKey.Size = new System.Drawing.Size(34, 21);
@@ -197,7 +195,7 @@
             // 
             // btnSaveSetting
             // 
-            this.btnSaveSetting.Location = new System.Drawing.Point(176, 194);
+            this.btnSaveSetting.Location = new System.Drawing.Point(150, 189);
             this.btnSaveSetting.Name = "btnSaveSetting";
             this.btnSaveSetting.Size = new System.Drawing.Size(43, 19);
             this.btnSaveSetting.TabIndex = 20;
@@ -208,7 +206,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(176, 118);
+            this.label2.Location = new System.Drawing.Point(150, 113);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 12);
             this.label2.TabIndex = 21;
@@ -219,11 +217,12 @@
             this.labNowTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labNowTime.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labNowTime.ForeColor = System.Drawing.Color.Black;
-            this.labNowTime.Location = new System.Drawing.Point(2, 9);
+            this.labNowTime.Location = new System.Drawing.Point(8, 7);
             this.labNowTime.Name = "labNowTime";
-            this.labNowTime.Size = new System.Drawing.Size(184, 38);
+            this.labNowTime.Size = new System.Drawing.Size(155, 38);
             this.labNowTime.TabIndex = 22;
-            this.labNowTime.Text = "00:00:00.0";
+            this.labNowTime.Text = "00:00:00";
+            this.labNowTime.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.labNowTime_MouseDoubleClick);
             // 
             // exitToolStripMenuItem
             // 
@@ -283,15 +282,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(242, 218);
+            this.ClientSize = new System.Drawing.Size(200, 220);
             this.ContextMenuStrip = this.MnuRBC;
             this.ControlBox = false;
-            this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.labNowTime);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSaveSetting);
             this.Controls.Add(this.txtHotKey);
             this.Controls.Add(this.btnKeyPressStart);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.labNowTime);
             this.Controls.Add(this.txtKPTime4);
             this.Controls.Add(this.txtKPTime3);
             this.Controls.Add(this.txtKPTime2);

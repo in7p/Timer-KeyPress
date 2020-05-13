@@ -133,7 +133,7 @@ namespace Timer
         }
         private void RefreshlabNowTime() 
         {
-            labNowTime.Text = DateTime.Now.ToString("hh:mm:ss.f");
+            labNowTime.Text = DateTime.Now.ToString("hh:mm:ss");
             labTimer.Text= (DateTime.Now - startTime).ToString();
             KeyNum1 = Convert.ToInt16(txtKeypress1.Text);
             KeyNum2 = Convert.ToInt16(txtKeypress2.Text);
@@ -343,8 +343,8 @@ namespace Timer
 
         private void labTime_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (bShowBtn == true) { bShowBtn = false; this.Width = 296; this.Height = 90; }
-            else { bShowBtn = true; this.Width = 296; this.Height = 367; }
+            if (bShowBtn == true) { bShowBtn = false; this.Height = 90; labNowTime.Visible = false; }
+            else { bShowBtn = true; this.Height = 220; labNowTime.Visible = true; }
         }
 
         private void transparentToolStripMenuItem_Click(object sender, EventArgs e)
@@ -418,6 +418,12 @@ namespace Timer
                         break;
                     }
             }
+        }
+
+        private void labNowTime_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (bShowBtn == true) { bShowBtn = false; this.Height = 50; }
+            else { bShowBtn = true; this.Height = 220;  }
         }
 
         private void TXTKPTime1_TextChanged(object sender, EventArgs e)
