@@ -51,6 +51,7 @@
             this.timeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transparentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuRBC = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.labLog = new System.Windows.Forms.Label();
             this.MnuRBC.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -276,15 +277,25 @@
             this.MnuRBC.Name = "MnuRBC";
             this.MnuRBC.Size = new System.Drawing.Size(161, 117);
             // 
+            // labLog
+            // 
+            this.labLog.AutoSize = true;
+            this.labLog.Location = new System.Drawing.Point(12, 226);
+            this.labLog.Name = "labLog";
+            this.labLog.Size = new System.Drawing.Size(41, 12);
+            this.labLog.TabIndex = 23;
+            this.labLog.Text = "label1";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(200, 220);
+            this.ClientSize = new System.Drawing.Size(200, 289);
             this.ContextMenuStrip = this.MnuRBC;
             this.ControlBox = false;
+            this.Controls.Add(this.labLog);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSaveSetting);
             this.Controls.Add(this.txtHotKey);
@@ -340,6 +351,7 @@
         private System.Windows.Forms.ToolStripMenuItem timeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transparentToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip MnuRBC;
+        private System.Windows.Forms.Label labLog;
     }
 }
 

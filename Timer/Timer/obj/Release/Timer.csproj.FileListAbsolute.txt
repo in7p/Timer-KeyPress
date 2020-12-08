@@ -58,3 +58,4 @@ D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer.Properties.Resources.resourc
 D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer.csproj.GenerateResource.cache
 D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer Keypress.exe
 D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer Keypress.pdb
+D:\Git\Timer-KeyPress\Timer\Timer\obj\Release\Timer.csproj.CoreCompileInputs.cache

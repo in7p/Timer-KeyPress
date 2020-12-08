@@ -13,8 +13,6 @@ using System.IO;
 
 namespace Timer
 {
-    
-
     public partial class frmMain : Form
     {
         public class HotKeys
@@ -139,10 +137,7 @@ namespace Timer
             KeyNum2 = Convert.ToInt16(txtKeypress2.Text);
             KeyNum3 = Convert.ToInt16(txtKeypress3.Text);
             KeyNum4 = Convert.ToInt16(txtKeypress4.Text);
-            KeyPressSleep1 = Convert.ToInt16(txtKPTime1.Text);
-            KeyPressSleep2 = Convert.ToInt16(txtKPTime2.Text);
-            KeyPressSleep3 = Convert.ToInt16(txtKPTime3.Text);
-            KeyPressSleep4 = Convert.ToInt16(txtKPTime4.Text);
+            labLog.Text = KeyPressSleep1.ToString()+" hwnd:"+ hwndkp.ToString();
         }
         public void RefreshNowTime()
         {
@@ -167,6 +162,14 @@ namespace Timer
             tKeyPress2 = new Thread(skp2);
             tKeyPress3 = new Thread(skp3);
             tKeyPress4 = new Thread(skp4);
+            KeyPressSleep1 = -1;
+            KeyPressSleep2 = -1;
+            KeyPressSleep3 = -1;
+            KeyPressSleep4 = -1;
+            tKeyPress1.Start();
+            tKeyPress2.Start();
+            tKeyPress3.Start();
+            tKeyPress4.Start();
         }
 
         private void iniread()
@@ -269,60 +272,6 @@ namespace Timer
                 Environment.Exit(0);
         }
         //下拉菜单-Exit
-
-        private void sFormClose()
-        {
-            try
-            {
-                UnregisterHotKey(Handle, keyid);
-            }
-            catch
-            {
-
-            }
-            try
-            {
-                tKeyPress1.Abort();
-            }
-            catch
-            {
-
-            }
-
-            try
-            {
-                tKeyPress2.Abort();
-            }
-            catch
-            {
-
-            }
-            try
-            {
-                tKeyPress3.Abort();
-            }
-            catch
-            {
-
-            }
-            try
-            {
-                tKeyPress4.Abort();
-            }
-            catch
-            {
-
-            }
-            try
-            {
-                tNowTime.Abort();
-            }
-            catch
-            {
-
-            }
-            //防止退出线程未关闭
-        }
 
         private void topToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -469,102 +418,77 @@ namespace Timer
                 btnKeyPressStart.Enabled = true;
                 labTimer.ForeColor = System.Drawing.Color.Red;
                 hwndkp = WindowFromPoint(Cursor.Position.X, Cursor.Position.Y);
-                if (KeyNum1 >=32 && KeyNum1<=225)
-                {
-                    tKeyPress1.Start();
-                }
-                if (KeyNum2 > 32 && KeyNum2 < 225)
-                {
-                    tKeyPress2.Start();
-                }
-                if (KeyNum3 > 32 && KeyNum3 < 225)
-                {
-                    tKeyPress3.Start();
-                }
-                if (KeyNum4 > 32 && KeyNum4 < 225)
-                {
-                    tKeyPress4.Start();
-                }
+                //hwndkp = FindWindow(null, "魔兽世界");
+                KeyPressSleep1 = Convert.ToInt16(txtKPTime1.Text);
+                KeyPressSleep2 = Convert.ToInt16(txtKPTime2.Text);
+                KeyPressSleep3 = Convert.ToInt16(txtKPTime3.Text);
+                KeyPressSleep4 = Convert.ToInt16(txtKPTime4.Text);
             }
             else
             {
                 btnKeyPressStart.Text = "Start";
                 btnKeyPressStart.Enabled = false;
                 labTimer.ForeColor = System.Drawing.Color.Black;
-                try 
-                {
-                    tKeyPress1.Abort();
-                }
-                catch 
-                {
-
-                }
-                
-                try
-                {
-                    tKeyPress2.Abort();
-                }
-                catch
-                {
-
-                }
-                try
-                {
-                    tKeyPress3.Abort();
-                }
-                catch
-                {
-
-                }
-                try
-                {
-                    tKeyPress4.Abort();
-                }
-                catch
-                {
-
-                }
+                KeyPressSleep1 = -1;
+                KeyPressSleep2 = -1;
+                KeyPressSleep3 = -1;
+                KeyPressSleep4 = -1;
             }
         }
 
         void skp1()
         {
-            while (hwndkp != IntPtr.Zero)
-            {
-                PostMessage(hwndkp, WM_KEYDOWN, KeyNum1, 0);
-                Thread.Sleep(5);
-                PostMessage(hwndkp, WM_KEYUP, KeyNum1, 0);
-                Thread.Sleep(KeyPressSleep1);
+            while (true) { 
+                while (hwndkp != IntPtr.Zero && KeyPressSleep1 != -1 && KeyNum1 > 32 && KeyNum1 < 225)
+                {
+                    Thread.Sleep(KeyPressSleep1);
+                    PostMessage(hwndkp, WM_KEYDOWN, KeyNum1, 0);
+                    Thread.Sleep(5);
+                    PostMessage(hwndkp, WM_KEYUP, KeyNum1, 0);
+                }
+                Thread.Sleep(1000);
             }
         }
         void skp2()
         {
-            while (hwndkp != IntPtr.Zero)
+            while (true)
             {
-                PostMessage(hwndkp, WM_KEYDOWN, KeyNum2, 0);
-                Thread.Sleep(5);
-                PostMessage(hwndkp, WM_KEYUP, KeyNum2, 0);
-                Thread.Sleep(KeyPressSleep2);
+                while (hwndkp != IntPtr.Zero && KeyPressSleep2 != -1 && KeyNum2 > 32 && KeyNum2 < 225)
+                {
+                    Thread.Sleep(KeyPressSleep2);
+                    PostMessage(hwndkp, WM_KEYDOWN, KeyNum2, 0);
+                    Thread.Sleep(5);
+                    PostMessage(hwndkp, WM_KEYUP, KeyNum2, 0);
+                }
+                Thread.Sleep(1000);
             }
         }
         void skp3()
         {
-            while (hwndkp != IntPtr.Zero)
+            while (true)
             {
-                PostMessage(hwndkp, WM_KEYDOWN, KeyNum3, 0);
-                Thread.Sleep(5);
-                PostMessage(hwndkp, WM_KEYUP, KeyNum3, 0);
-                Thread.Sleep(KeyPressSleep3);
+                while (hwndkp != IntPtr.Zero && KeyPressSleep3 != -1 && KeyNum3 > 32 && KeyNum3 < 225)
+                {
+                    Thread.Sleep(KeyPressSleep3);
+                    PostMessage(hwndkp, WM_KEYDOWN, KeyNum3, 0);
+                    Thread.Sleep(5);
+                    PostMessage(hwndkp, WM_KEYUP, KeyNum3, 0);
+                }
+                Thread.Sleep(1000);
             }
         }
         void skp4()
         {
-            while (hwndkp != IntPtr.Zero)
-            {
-                PostMessage(hwndkp, WM_KEYDOWN, KeyNum4, 0);
-                Thread.Sleep(5);
-                PostMessage(hwndkp, WM_KEYUP, KeyNum4, 0);
-                Thread.Sleep(KeyPressSleep4);
+            while (true)
+            {  
+                while (hwndkp != IntPtr.Zero && KeyPressSleep4 != -1 && KeyNum4 > 32 && KeyNum4 < 225)
+                {
+                    Thread.Sleep(KeyPressSleep4);
+                    PostMessage(hwndkp, WM_KEYDOWN, KeyNum4, 0);
+                    Thread.Sleep(5);
+                    PostMessage(hwndkp, WM_KEYUP, KeyNum4, 0);
+                }
+                Thread.Sleep(1000);
             }
         }
 
