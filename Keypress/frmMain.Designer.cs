@@ -62,10 +62,10 @@
             this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.Font = new System.Drawing.Font("Arial", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnReset.Location = new System.Drawing.Point(181, 23);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReset.Location = new System.Drawing.Point(233, 27);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(47, 24);
+            this.btnReset.Size = new System.Drawing.Size(60, 28);
             this.btnReset.TabIndex = 2;
             this.btnReset.TabStop = false;
             this.btnReset.Text = "Reset";
@@ -75,11 +75,11 @@
             // 
             // txtKeypress1
             // 
-            this.txtKeypress1.Location = new System.Drawing.Point(10, 48);
-            this.txtKeypress1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKeypress1.Location = new System.Drawing.Point(13, 56);
+            this.txtKeypress1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtKeypress1.Name = "txtKeypress1";
             this.txtKeypress1.ReadOnly = true;
-            this.txtKeypress1.Size = new System.Drawing.Size(95, 23);
+            this.txtKeypress1.Size = new System.Drawing.Size(121, 27);
             this.txtKeypress1.TabIndex = 4;
             this.txtKeypress1.Text = "49";
             this.txtKeypress1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -87,11 +87,11 @@
             // 
             // txtKeypress2
             // 
-            this.txtKeypress2.Location = new System.Drawing.Point(10, 87);
-            this.txtKeypress2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKeypress2.Location = new System.Drawing.Point(13, 102);
+            this.txtKeypress2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtKeypress2.Name = "txtKeypress2";
             this.txtKeypress2.ReadOnly = true;
-            this.txtKeypress2.Size = new System.Drawing.Size(95, 23);
+            this.txtKeypress2.Size = new System.Drawing.Size(121, 27);
             this.txtKeypress2.TabIndex = 5;
             this.txtKeypress2.Text = "27";
             this.txtKeypress2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -99,11 +99,11 @@
             // 
             // txtKeypress3
             // 
-            this.txtKeypress3.Location = new System.Drawing.Point(10, 125);
-            this.txtKeypress3.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKeypress3.Location = new System.Drawing.Point(13, 147);
+            this.txtKeypress3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtKeypress3.Name = "txtKeypress3";
             this.txtKeypress3.ReadOnly = true;
-            this.txtKeypress3.Size = new System.Drawing.Size(95, 23);
+            this.txtKeypress3.Size = new System.Drawing.Size(121, 27);
             this.txtKeypress3.TabIndex = 6;
             this.txtKeypress3.Text = "27";
             this.txtKeypress3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -111,11 +111,11 @@
             // 
             // txtKeypress4
             // 
-            this.txtKeypress4.Location = new System.Drawing.Point(10, 163);
-            this.txtKeypress4.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKeypress4.Location = new System.Drawing.Point(13, 192);
+            this.txtKeypress4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtKeypress4.Name = "txtKeypress4";
             this.txtKeypress4.ReadOnly = true;
-            this.txtKeypress4.Size = new System.Drawing.Size(95, 23);
+            this.txtKeypress4.Size = new System.Drawing.Size(121, 27);
             this.txtKeypress4.TabIndex = 7;
             this.txtKeypress4.Text = "27";
             this.txtKeypress4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -123,10 +123,10 @@
             // 
             // txtKPTime1
             // 
-            this.txtKPTime1.Location = new System.Drawing.Point(112, 48);
-            this.txtKPTime1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKPTime1.Location = new System.Drawing.Point(144, 56);
+            this.txtKPTime1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtKPTime1.Name = "txtKPTime1";
-            this.txtKPTime1.Size = new System.Drawing.Size(59, 23);
+            this.txtKPTime1.Size = new System.Drawing.Size(75, 27);
             this.txtKPTime1.TabIndex = 8;
             this.txtKPTime1.Text = "30";
             this.txtKPTime1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -135,10 +135,10 @@
             // 
             // txtKPTime2
             // 
-            this.txtKPTime2.Location = new System.Drawing.Point(112, 87);
-            this.txtKPTime2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKPTime2.Location = new System.Drawing.Point(144, 102);
+            this.txtKPTime2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtKPTime2.Name = "txtKPTime2";
-            this.txtKPTime2.Size = new System.Drawing.Size(59, 23);
+            this.txtKPTime2.Size = new System.Drawing.Size(75, 27);
             this.txtKPTime2.TabIndex = 9;
             this.txtKPTime2.Text = "70";
             this.txtKPTime2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -147,10 +147,10 @@
             // 
             // txtKPTime3
             // 
-            this.txtKPTime3.Location = new System.Drawing.Point(112, 125);
-            this.txtKPTime3.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKPTime3.Location = new System.Drawing.Point(144, 147);
+            this.txtKPTime3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtKPTime3.Name = "txtKPTime3";
-            this.txtKPTime3.Size = new System.Drawing.Size(59, 23);
+            this.txtKPTime3.Size = new System.Drawing.Size(75, 27);
             this.txtKPTime3.TabIndex = 10;
             this.txtKPTime3.Text = "100";
             this.txtKPTime3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -159,10 +159,10 @@
             // 
             // txtKPTime4
             // 
-            this.txtKPTime4.Location = new System.Drawing.Point(112, 163);
-            this.txtKPTime4.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKPTime4.Location = new System.Drawing.Point(144, 192);
+            this.txtKPTime4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtKPTime4.Name = "txtKPTime4";
-            this.txtKPTime4.Size = new System.Drawing.Size(59, 23);
+            this.txtKPTime4.Size = new System.Drawing.Size(75, 27);
             this.txtKPTime4.TabIndex = 11;
             this.txtKPTime4.Text = "500";
             this.txtKPTime4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -172,10 +172,10 @@
             // btnKeyPressStart
             // 
             this.btnKeyPressStart.Enabled = false;
-            this.btnKeyPressStart.Location = new System.Drawing.Point(179, 106);
-            this.btnKeyPressStart.Margin = new System.Windows.Forms.Padding(4);
+            this.btnKeyPressStart.Location = new System.Drawing.Point(230, 125);
+            this.btnKeyPressStart.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnKeyPressStart.Name = "btnKeyPressStart";
-            this.btnKeyPressStart.Size = new System.Drawing.Size(50, 50);
+            this.btnKeyPressStart.Size = new System.Drawing.Size(64, 59);
             this.btnKeyPressStart.TabIndex = 13;
             this.btnKeyPressStart.Text = "Start";
             this.btnKeyPressStart.UseVisualStyleBackColor = true;
@@ -183,11 +183,11 @@
             // 
             // txtHotKey
             // 
-            this.txtHotKey.Location = new System.Drawing.Point(184, 72);
-            this.txtHotKey.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHotKey.Location = new System.Drawing.Point(237, 85);
+            this.txtHotKey.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtHotKey.Name = "txtHotKey";
             this.txtHotKey.ReadOnly = true;
-            this.txtHotKey.Size = new System.Drawing.Size(39, 23);
+            this.txtHotKey.Size = new System.Drawing.Size(49, 27);
             this.txtHotKey.TabIndex = 19;
             this.txtHotKey.Text = "F11";
             this.txtHotKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -195,10 +195,10 @@
             // 
             // btnSaveSetting
             // 
-            this.btnSaveSetting.Location = new System.Drawing.Point(179, 159);
-            this.btnSaveSetting.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSaveSetting.Location = new System.Drawing.Point(230, 187);
+            this.btnSaveSetting.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnSaveSetting.Name = "btnSaveSetting";
-            this.btnSaveSetting.Size = new System.Drawing.Size(50, 27);
+            this.btnSaveSetting.Size = new System.Drawing.Size(64, 32);
             this.btnSaveSetting.TabIndex = 20;
             this.btnSaveSetting.Text = "Save";
             this.btnSaveSetting.UseVisualStyleBackColor = true;
@@ -207,17 +207,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(179, 51);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(230, 60);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 17);
+            this.label2.Size = new System.Drawing.Size(66, 20);
             this.label2.TabIndex = 21;
             this.label2.Text = "Hotkey:";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -225,7 +225,7 @@
             // 
             this.topToolStripMenuItem.CheckOnClick = true;
             this.topToolStripMenuItem.Name = "topToolStripMenuItem";
-            this.topToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.topToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
             this.topToolStripMenuItem.Text = "Stay Top";
             this.topToolStripMenuItem.Click += new System.EventHandler(this.topToolStripMenuItem_Click);
             // 
@@ -234,7 +234,7 @@
             this.txtUserInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserInput.MaxLength = 20;
             this.txtUserInput.Name = "txtUserInput";
-            this.txtUserInput.Size = new System.Drawing.Size(100, 23);
+            this.txtUserInput.Size = new System.Drawing.Size(100, 27);
             this.txtUserInput.Text = "备注";
             this.txtUserInput.ToolTipText = "回车确认，回车或双击解锁";
             // 
@@ -242,20 +242,21 @@
             // 
             this.timeToolStripMenuItem.Enabled = false;
             this.timeToolStripMenuItem.Name = "timeToolStripMenuItem";
-            this.timeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.timeToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
             this.timeToolStripMenuItem.Text = "time";
             this.timeToolStripMenuItem.Visible = false;
             // 
             // transparentToolStripMenuItem
             // 
             this.transparentToolStripMenuItem.Name = "transparentToolStripMenuItem";
-            this.transparentToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.transparentToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
             this.transparentToolStripMenuItem.Text = "Transparent";
             this.transparentToolStripMenuItem.Visible = false;
             this.transparentToolStripMenuItem.Click += new System.EventHandler(this.transparentToolStripMenuItem_Click);
             // 
             // MnuRBC
             // 
+            this.MnuRBC.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MnuRBC.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem,
             this.topToolStripMenuItem,
@@ -263,43 +264,47 @@
             this.timeToolStripMenuItem,
             this.transparentToolStripMenuItem});
             this.MnuRBC.Name = "MnuRBC";
-            this.MnuRBC.Size = new System.Drawing.Size(161, 117);
+            this.MnuRBC.Size = new System.Drawing.Size(166, 129);
             // 
             // labTimer
             // 
             this.labTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labTimer.Font = new System.Drawing.Font("Arial", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labTimer.ForeColor = System.Drawing.Color.Black;
-            this.labTimer.Location = new System.Drawing.Point(1, 3);
-            this.labTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labTimer.Location = new System.Drawing.Point(1, 4);
+            this.labTimer.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labTimer.Name = "labTimer";
-            this.labTimer.Size = new System.Drawing.Size(180, 38);
+            this.labTimer.Size = new System.Drawing.Size(231, 45);
             this.labTimer.TabIndex = 0;
             this.labTimer.Text = "00:00:00.0";
             // 
             // labLog
             // 
             this.labLog.AutoSize = true;
-            this.labLog.Location = new System.Drawing.Point(112, 196);
+            this.labLog.Location = new System.Drawing.Point(144, 231);
+            this.labLog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labLog.Name = "labLog";
-            this.labLog.Size = new System.Drawing.Size(36, 17);
+            this.labLog.Size = new System.Drawing.Size(44, 20);
             this.labLog.TabIndex = 22;
             this.labLog.Text = "label";
+            this.labLog.Visible = false;
             // 
             // txtWindowName
             // 
-            this.txtWindowName.Location = new System.Drawing.Point(11, 193);
+            this.txtWindowName.Location = new System.Drawing.Point(14, 227);
+            this.txtWindowName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtWindowName.Name = "txtWindowName";
-            this.txtWindowName.Size = new System.Drawing.Size(94, 23);
+            this.txtWindowName.Size = new System.Drawing.Size(120, 27);
             this.txtWindowName.TabIndex = 23;
+            this.txtWindowName.Visible = false;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(233, 254);
+            this.ClientSize = new System.Drawing.Size(300, 227);
             this.ContextMenuStrip = this.MnuRBC;
             this.ControlBox = false;
             this.Controls.Add(this.txtWindowName);
@@ -321,7 +326,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(100, 100);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
